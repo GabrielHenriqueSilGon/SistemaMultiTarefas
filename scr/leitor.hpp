@@ -21,13 +21,12 @@ public:
   void LerArquivoT (unordered_map < int, vector < string >> *VT,
 		    unordered_map < string, vector < int >>*DT);
 
-  void TokenizarInColumn (string s, unordered_map < string,
-			  vector < int >>*V, unordered_map < string,
-			  vector < int >>*D, int cont);
+  void Tokenizar1 (string s, unordered_map < string,
+		   vector < int >>*V, unordered_map < string,
+		   vector < int >>*D, int cont);
 
-  void TokenizarInLine (string s, unordered_map < int,
-			vector < string >> *V, unordered_map < string,
-			vector < int >>*D, int cont);
+  void Tokenizar2 (string s, unordered_map < int,
+		   vector < string >> *V, int cont);
 
   void mostra (unordered_map < string, vector < int >>V);
 
