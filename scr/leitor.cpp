@@ -64,7 +64,6 @@ leitor::Tokenizar (string s, unordered_map < string,
 		    vector < int > >*D, int cont)
 {
 
-  char vir = ',';
   string t;
   string o = "";
   string esp = " ";
