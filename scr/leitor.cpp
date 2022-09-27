@@ -16,7 +16,7 @@ leitor::LerArquivoD (unordered_map < string, vector < int >>*VD,
       while (!abreD.eof ())
 	{
 	  getline (abreD, s);
-	  Tokenizar1 (s, VD, DD, cont);
+	  Tokenizar (s, VD, DD, cont);
 	  cont++;
 	}
     }
@@ -29,8 +29,8 @@ leitor::LerArquivoD (unordered_map < string, vector < int >>*VD,
 }
 
 void
-leitor::LerArquivoT (unordered_map < int, vector < string > >*VT,
-		     unordered_map < string, vector < int > >*DT)
+leitor::LerArquivoT (unordered_map < string, vector < int >>*VT,
+		    unordered_map < string, vector < int >>*DT)
 {
 
   int cont = 1;
@@ -44,7 +44,7 @@ leitor::LerArquivoT (unordered_map < int, vector < string > >*VT,
       while (!abreT.eof ())
 	{
 	  getline (abreT, s);
-	  Tokenizar2 (s, VT, cont);
+	  Tokenizar (s, VT, DT, cont);
 	  cont++;
 	}
 
@@ -57,54 +57,37 @@ leitor::LerArquivoT (unordered_map < int, vector < string > >*VT,
   abreT.close ();
 }
 
+
 void
-leitor::Tokenizar1 (string s, unordered_map < string,
-			   vector < int > >*V, unordered_map < string,
-			   vector < int > >*D, int cont)
+leitor::Tokenizar (string s, unordered_map < string,
+		    vector < int > >*V, unordered_map < string,
+		    vector < int > >*D, int cont)
 {
 
   char vir = ',';
   string t;
+  string o = "";
+  string esp = " ";
+  string cla;
   int conti = 1;
   stringstream ss (s);
-
-  while (getline (ss, t, vir))
-    {
-
-      if (conti < 5)
-	{
-	  t.append (",").append (to_string (conti));
-	  (*V)[t].push_back (conti);
-	}
-      else
-	{
-	  (*D)[t].push_back (cont);
-	}
-      conti++;
-    }
+  
+  while (ss >>t)
+  {
+     if(conti < 5){
+     o = o+t+esp;
+     conti++;
+     }
+     
+     else cla = t;
+      
+  }
+  
+  (*V)[o].push_back(cont);
+  (*D)[cla].push_back(cont);
+  
+  
 }
-
-void
-leitor::Tokenizar2 (string s, unordered_map < int,
-			 vector < string > >*V, int cont)
-{
-  char vir = ',';
-  string t;
-  int conti = 1;
-  stringstream ss (s);
-
-  while (getline (ss, t, vir))
-    {
-      if (conti < 5)
-	{
-	  t.append (",").append (to_string (conti));
-	  (*V)[cont].push_back (t);
-	}
-      conti++;
-    }
-}
-
-
 
 void
 leitor::mostra (unordered_map < string, vector < int > >V)
@@ -114,70 +97,46 @@ leitor::mostra (unordered_map < string, vector < int > >V)
 
   for (it = V.begin (); it != V.end (); ++it)
     {
-
-      cout << it->first << " :: ";
-
-    for (int n:it->second)
-	{
-
-	  cout << n << " ";
-	}
-
+      
+      cout << it->first << " : ";
+     
+      for (auto i = it->second.begin(); i != it->second.end(); ++i)
+         cout << *i << " ";
+      
       cout << endl;
     }
 }
 
 void
-leitor::mostraVT (unordered_map < int, vector < string > >VT)
-{
-
-  unordered_map < int, vector < string > >::iterator it;
-
-
-  for (it = VT.begin (); it != VT.end (); ++it)
-    {
-
-      cout << it->first << " :: ";
-
-    for (string n:it->second)
-	{
-
-	  cout << n << " ";
-	}
-
-      cout << endl;
-    }
-}
-
-
-void
-leitor::Permuta (unordered_map < int, vector < string >> VT,
+leitor::Permuta (unordered_map < string, vector < int >> VT,
 		 unordered_map < string, vector < int >>VD)
 {
   int cont = 0;
-  unordered_map < int, vector < string > >::iterator it;
+  unordered_map < string, vector < int >>::iterator it;
 
-  unordered_map < int, vector < string > >VP;
+  vector<string> VP;
 
   cout << "\nValores de T encontrados como chave de D:\n";
   for (it = VT.begin (); it != VT.end (); ++it)
     {
-
-    for (string n:it->second)
-	{
-
-	  if (VD.find (n) == VD.end ())
-	    {
-
-	      cout << n << endl;
-	      VP[it->first].push_back (n);
-	      cont++;
-	    }
-	}
+      unordered_map < string, vector < int >>::iterator itr;
+     
+      for (itr = VD.begin (); itr != VD.end (); ++itr)
+        {
+          if(itr->first == it->first){
+              VP.push_back(it->first);
+              cont++;
+              
+            }  
+        }
+      	 
     }
-
+  
+  
   cout << "Total de chaves encontradas: " << cont << endl;
 
-  mostraVT (VP);
+  for (auto vv = VP.begin(); vv != VP.end(); ++vv)
+        cout << *vv << " ";
 
 }
+
