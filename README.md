@@ -8,7 +8,9 @@ A princípio, o programa têm uma função de leitor, uma vez que este deve ler 
 
 # Etapa II
 
-A função Permuta é adicionada no cpp, tal função compara as Hash's V de ambos arquivos e salva os valores idénticos em uma Hash VP, e depois à imprime.
+A função Permuta é adicionada no cpp, tal função compara as Hash's V de ambos arquivos e salva os valores idénticos em um Vector VP, e depois à imprime.
+
+Nessa versão do código, as funções de ler arquivo estão comentadas, e um array de strings com parte dos dados nos arquivos foi utilizado para teste.
 
 # Makefile
 
