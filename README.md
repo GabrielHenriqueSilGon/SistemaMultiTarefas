@@ -11,9 +11,11 @@ Após ler uma linha, o leitor envia a string resultande para o Tokenizador, que 
 Abaixo estão os resultados obtidos em Teste:
 
 ![image](https://user-images.githubusercontent.com/84454532/202011661-f8c15b40-24ee-4287-a1db-d7530ccd0f4a.png)
+
 Figura 1: D
 
 ![image](https://user-images.githubusercontent.com/84454532/202011471-574ab77c-c945-46ad-a82b-190770e3dcac.png)
+
 Figura 2: T
 
 # Etapa II
@@ -23,6 +25,7 @@ Para essa etapa, a função DadosPString pega os valores de T e tokeniza sua str
 Então entra função permuta, que de fato permuta a hash e salva as combinações do vetor em DadosStringSalvos, pra de pois exibí-los pela função mostraP como visto abaixo.
 
 ![image](https://user-images.githubusercontent.com/84454532/202016511-3383f7e7-e286-447e-aaa7-17b7b4e2efea.png)
+
 Figura 3: Permutação da linha 4
 
 # Etapa 3 e 4
@@ -30,6 +33,7 @@ Figura 3: Permutação da linha 4
 Nessa Etapa, a função intercede verifica as classes para descubrir em qual delas há o maior número de interseções, utilizando a Hash DadosStringSalvos criada anteriormente. Há também uma Hash de Cache, a qual guarda o resultado de interseções já realizadas anteriormente. A partir de cada nova entrada, se o resultado já existir em hash o programa apenas testa os valores em função do resultado. Ao fim, o programa mostra quantas vezes cada classe teve o maior número de interseções.
 
 ![image](https://user-images.githubusercontent.com/84454532/202020053-e95b36c4-8778-4dc1-9e36-ed3935d1f563.png)
+
 Figura 4: Interseções por classe.
 
 # Makefile
