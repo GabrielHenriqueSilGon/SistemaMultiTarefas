@@ -4,16 +4,24 @@ int
 main ()
 {
   leitor L;
-  unordered_map < string, vector < int >>VT;
-  unordered_map < string, vector < int >>VD;
-  unordered_map < string, vector < int >>DD;
-  unordered_map < string, vector < int >>DT;
-
-  //cout << "\nTentando ler arquivos...\n";
-  //L.LerArquivoD (&VD, &DD);
-  //L.LerArquivoT (&VT, &DT);
+  unordered_map < string, vector <int> >VT;  //passo 1
+  unordered_map < string, vector <int> >VD;
+  unordered_map < string, vector <int> >DD;
+  unordered_map < string, vector <int> >DT;
   
-  //para teste
+  unordered_map<int, vector<string> > DadosString; //passo 2
+  unordered_map<int, vector<vector<string>> > DadosStringSalvos;
+  
+  
+  unordered_map<string, int > DI; //passo 3
+
+  unordered_map<string, vector<int>> cache; //passo 4
+
+  cout << "\nTentando ler arquivos...\n";
+  L.LerArquivoD (&VD, &DD);
+  L.LerArquivoT (&VT, &DT);
+  
+  /*para teste
   string strinD[] = { "5.4 3.4 1.5 0.4 Iris-setosa",
     "6.3 2.9 5.6 1.8 Iris-virginica",
     "5.8 2.6 4.0 1.2 Iris-versicolor",
@@ -41,7 +49,7 @@ main ()
   for (int i = 0; i < 9; i++) {
       L.Tokenizar(strinD[i],&VD,&DD,i);
       L.Tokenizar(strinT[i],&VT,&DT,i);
-  }
+  } */
 
   cout << "\nArquivo D:\n";
   cout << "Valores em D:\n";
@@ -56,7 +64,14 @@ main ()
   L.mostra (DT);
 
   cout << "\nPermutando arquivo:\n";
-  L.Permuta (VT, VD);
-
+  L.DadosPString(&VD, &VT, &DadosString);
+  L.permuta (&DadosString, &DadosStringSalvos);
+  L.mostraP (&DadosStringSalvos);
+  
+  cout << "\nFazendo a intersecao de arquivos:\n";
+  L.intercede(&DadosStringSalvos,&VD,&DD,&cache,&DI);
+  cout << "Quantas vezes teve maior intersecao: " << endl;
+  L.mostraI(&DI);
+  
   return 0;
 }
